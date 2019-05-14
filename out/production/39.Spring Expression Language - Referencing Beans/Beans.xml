@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    
+    <bean id="book1" class="com.application.model.Book">
+        <property name="bookId" value="101"/>
+        <property name="bookName" value="Spring Framework"/>
+    </bean>
+    <bean id="book2" class="com.application.model.Book">
+        <property name="bookId" value="102"/>
+        <property name="bookName" value="Vaadin Framework"/>
+    </bean>
+
+    <bean id="bookCollection" class="com.application.model.BookCollection">
+        <property name="bookList">
+            <list>
+                <ref bean="book1"/>
+                <ref bean="book2"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean class="com.application.model.BookLibrary" id="bookLibrary">
+       <property name="allBook" value="#{bookCollection.bookList}"/>
+        <property name="getFirstBook" value="#{bookCollection.getFirstBook()}"/>
+    </bean>
+
+</beans>
